@@ -1,0 +1,42 @@
+:root {
+  --bg-main: #0A0E0F;
+  --bg-card: #111719;
+  --bg-card-hover: #161F22;
+  --border-dim: #1D282C;
+  --border-focus: #3DDC84;
+  
+  --text-main: #E1E6E8;
+  --text-dim: #6B7680;
+  
+  --signal-up: #3DDC84;
+  --signal-warn: #E8A33D;
+  --signal-crit: #C4554D;
+  
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  padding: 2rem;
+}
+
+/* Efeito sutil de pulsação para portas ativas */
+@keyframes heartbeat {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.pulse {
+  animation: heartbeat 2s infinite ease-in-out;
+}
