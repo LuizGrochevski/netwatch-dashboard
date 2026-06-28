@@ -302,3 +302,54 @@
   min-width: unset !important;
   min-height: unset !important;
 }
+
+.port-row-group {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.cve-list {
+  list-style: none;
+  margin: 6px 0 2px 28px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cve-row {
+  display: grid;
+  grid-template-columns: 70px 130px 90px 1fr;
+  gap: 8px;
+  font-size: 11px;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius);
+  align-items: start;
+}
+
+.cve-row__severity {
+  font-weight: 700;
+}
+
+.cve-row__id {
+  color: var(--text-secondary);
+}
+
+.cve-row__published {
+  color: var(--text-dim);
+}
+
+.cve-row__desc {
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .cve-row {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}

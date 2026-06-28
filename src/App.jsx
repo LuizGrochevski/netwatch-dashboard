@@ -4,12 +4,13 @@ import StatusBar from './components/StatusBar'
 import HostCard from './components/HostCard'
 import Timeline from './components/Timeline'
 import NewScanForm from './components/NewScanForm'
-import { fetchScanDetail, fetchHistory } from './data/netwatchClient'
+import { fetchScanDetail, fetchHistory, fetchScanCves } from './data/netwatchClient'
 import './styles/app.css'
 
 function App() {
   const [token, setToken] = useState(null)
   const [scanDetail, setScanDetail] = useState(null)
+  const [cvesByService, setCvesByService] = useState({})
   const [history, setHistory] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -27,8 +28,10 @@ function App() {
       }
       const latestId = historyData.items[0].id
       const detailData = await fetchScanDetail(token, latestId)
+      const cvesData = await fetchScanCves(token, latestId).catch(() => ({ cves: {} }))
       setHistory(historyData)
       setScanDetail(detailData)
+      setCvesByService(cvesData.cves ?? {})
     } catch (err) {
       setError(err.message)
     } finally {
@@ -84,7 +87,12 @@ function App() {
           )}
 
           {results.map((result) => (
-            <HostCard key={result.target} result={result} scannedAt={scanDetail.created_at} />
+            <HostCard
+              key={result.target}
+              result={result}
+              scannedAt={scanDetail.created_at}
+              cvesByService={cvesByService}
+            />
           ))}
         </section>
 

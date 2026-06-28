@@ -44,3 +44,11 @@ export async function createScan(token, { targets, ports, protocol }) {
   }
   return res.json()
 }
+
+export async function fetchScanCves(token, scanId) {
+  const res = await fetch(`${API}/scan/${scanId}/cves`, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+  if (!res.ok) throw new Error('Falha ao buscar CVEs do scan')
+  return res.json()
+}
