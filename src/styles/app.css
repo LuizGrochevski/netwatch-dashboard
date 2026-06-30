@@ -353,3 +353,20 @@
     gap: 2px;
   }
 }
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .cve-row {
+    grid-template-columns: 60px 110px 80px 1fr;
+    font-size: 10px;
+  }
+  .cve-row__desc {
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .app-main {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}
